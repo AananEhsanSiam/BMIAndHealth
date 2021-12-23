@@ -1,0 +1,35 @@
+﻿@model BMIAndHealth.Models.ViewModels.BMIVM
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+	<div class="col-4"></div>
+	<div class="col-4 mt-5">
+		<h3>BMI Calculator</h3>
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<form class="form-group" method="post" asp-action="CalculateBMI">
+			<input asp-for="@Model.Id" hidden />
+			<label asp-for="@Model.Height"></label>
+			<input class="form-control" asp-for="@Model.Height" />
+			<span asp-validation-for="@Model.Height" class="text-danger"></span>
+			<br />
+			<label asp-for="@Model.Weight" class="mt-2"></label>
+			<input class="form-control" asp-for="@Model.Weight" />
+			<span asp-validation-for="@Model.Weight" class="text-danger"></span>
+			<br />
+			<input type="submit" class="btn btn-primary mt-3" value="Calculate" />
+
+		</form>
+	</div>
+	<div class="col-4"></div>
+</div>
+
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+ }
