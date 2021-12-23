@@ -9,40 +9,44 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace BMIAndHealth.Controllers {
-    public class BMIController : Controller {
+    public class WaterNeedsController : Controller {
 
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ApplicationDBContext _db;
 
-        public BMIController(UserManager<IdentityUser> userManager, ApplicationDBContext db) {
+        public WaterNeedsController (UserManager<IdentityUser> userManager, ApplicationDBContext db) {
             _userManager = userManager;
             _db = db;
         }
 
+        public object WNCalculator { get; private set; }
+
         public IActionResult Index() {
-            BMIVM bMIVM = new BMIVM();
+            WNVM wnvm = new WNVM();
             if (User.Identity.IsAuthenticated) {
                 var userId = _userManager.GetUserId(User);
                 var appUser = _db.ApplicationUser.Find(userId);
 
-                bMIVM = new BMIVM() {
-                    Height = appUser.Height
+                var age = WaterNeedsCalculator.GetAge(appUser.DOB);
+
+                wnvm = new WNVM() {
+                    Age = age
                 };
+
             }
-
-
-            return View(bMIVM);
+            return View(wnvm);
         }
 
-        public IActionResult BMIResult(double result) {
+        public IActionResult WNResult(double result) {
             return View(result);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CalculateBMI(BMIVM bmiVM) {
-            double BMIResult = BMICalculator.Calculate(bmiVM.Height, bmiVM.Weight);
-            return RedirectToAction("BMIResult", new { result = BMIResult });
+        public IActionResult CalculateWN(WNVM wnvm) {
+            double WNResult = WaterNeedsCalculator.Calculate(wnvm.Age, wnvm.Weight);
+            return RedirectToAction("WNResult", new { result = WNResult });
         }
+        
     }
 }

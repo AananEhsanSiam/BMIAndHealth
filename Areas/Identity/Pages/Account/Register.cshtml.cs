@@ -68,10 +68,14 @@ namespace BMIAndHealth.Areas.Identity.Pages.Account
             [Required]
             public char Gender { get; set; }
 
-            [Display(Name = "Height (in meters)")]
+            [Display(Name = "Height (in cm)")]
             [Required]
             [Range(0, int.MaxValue, ErrorMessage = "Height must be greater than 0")]
             public double Height { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            public DateTime DOB { get; set; }
 
 
         }
@@ -88,7 +92,7 @@ namespace BMIAndHealth.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Gender =Input.Gender, Height = Input.Height };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Gender =Input.Gender, Height = Input.Height , DOB = Input.DOB };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

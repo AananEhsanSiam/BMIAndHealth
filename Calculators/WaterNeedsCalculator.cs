@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 namespace BMIAndHealth.Calculators {
     public class WaterNeedsCalculator {
         public static double Calculate(int age, double weight) {
-            double weightPound = weight * 2.20462;
+            double weightPound = (weight * 2.20462) / 2.2;
+            
             if (age < 30) {
                 weightPound = weightPound * 40;
             }
@@ -18,8 +19,16 @@ namespace BMIAndHealth.Calculators {
             }
             
             weightPound = (weightPound / 28.3) * 0.0295735;
+            weightPound = Math.Round(weightPound, 1);
 
             return weightPound;
+        }
+
+        public static int GetAge(DateTime dob) {
+            int age = 0;
+            age = DateTime.Now.Subtract(dob).Days;
+            age = age / 365;
+            return age;
         }
     }
 }

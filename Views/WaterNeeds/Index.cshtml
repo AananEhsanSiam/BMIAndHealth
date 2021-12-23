@@ -1,21 +1,18 @@
-﻿@model BMIAndHealth.Models.ViewModels.BMIVM
-
+﻿@model BMIAndHealth.Models.ViewModels.WNVM
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 <div class="row">
 	<div class="col-4"></div>
 	<div class="col-4 mt-5">
-		<h3>BMI Calculator</h3>
+		<h3>Water Needs Calculator</h3>
 		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-		<form class="form-group" method="post" asp-action="CalculateBMI">
-			<label asp-for="@Model.Height"></label>
-			<input class="form-control" asp-for="@Model.Height" />
-			<span asp-validation-for="@Model.Height" class="text-danger"></span>
+		<form class="form-group" method="post" asp-action="CalculateWN">
+			<label asp-for="@Model.Age"></label>
+			<input class="form-control" asp-for="@Model.Age" />
+			<span asp-validation-for="@Model.Age" class="text-danger"></span>
 			<br />
 			<label asp-for="@Model.Weight" class="mt-2"></label>
 			<input class="form-control" asp-for="@Model.Weight" />
@@ -31,4 +28,5 @@
 
 @section Scripts{
 	<partial name="_ValidationScriptsPartial" />
- }
+}
+

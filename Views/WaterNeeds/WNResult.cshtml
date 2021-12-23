@@ -1,0 +1,29 @@
+﻿@model double
+@{
+	ViewData["Title"] = "WNResult";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Result</h3>
+
+<div class="row">
+	<div class="col-2"></div>
+	<div class="col-4 d-flex justify-content-center align-items-center">
+		<h3>@Model liters</h3>
+	</div>
+	<div class="col-4">
+		<p class="text-justify">The U.S. National Academies of
+		Sciences, Engineering, and Medicine
+		detetmined that an adequate daily fluid intake is:
+		</p>
+		<ul>
+			<li>About 15.5 cups (3.7 liters) of fluids a day for men</li>
+			<li>About 11.5 cups (2.7 liters) of fluids a day for women</li>
+		</ul>
+
+	</div>
+	<div class="col-2"></div>
+</div>
+
+
