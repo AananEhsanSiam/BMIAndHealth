@@ -8,7 +8,7 @@
 
 
 <div class="row">
-	<div class="col-4"></div>
+	<div class="col-2"></div>
 	<div class="col-4 mt-5">
 		<h3>BMI Calculator</h3>
 		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -22,10 +22,32 @@
 			<span asp-validation-for="@Model.Weight" class="text-danger"></span>
 			<br />
 			<input type="submit" class="btn btn-primary mt-3" value="Calculate" />
-
 		</form>
 	</div>
-	<div class="col-4"></div>
+	<div class="col-4 mt-5">
+		@if (User.Identity.IsAuthenticated && Model.userHistories.Count() > 0) {
+			<h3>History</h3>
+			<table class="table table-bordered table-sm">
+				<tr>
+					<th>Time</th>
+					<th>BMI</th>
+				</tr>
+
+				@foreach (var history in Model.userHistories) { 
+				
+					<tr>
+						<td>@history.Time</td>
+						<td>@history.BMI</td>
+
+					</tr>
+				
+				}
+
+			</table>	
+
+		}
+	</div>
+	<div class="col-2"></div>
 </div>
 
 

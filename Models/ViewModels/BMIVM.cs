@@ -15,6 +15,8 @@ namespace BMIAndHealth.Models.ViewModels {
         [Range(0, double.MaxValue, ErrorMessage = "Value Must be Positive")]
         public double Weight { get; set; }
 
+        public IEnumerable<UserHistory> userHistories { get; set; }
+
 
     }
 }

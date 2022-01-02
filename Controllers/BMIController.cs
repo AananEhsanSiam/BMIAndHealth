@@ -25,17 +25,23 @@ namespace BMIAndHealth.Controllers {
                 var userId = _userManager.GetUserId(User);
                 var appUser = _db.ApplicationUser.Find(userId);
 
+                var history = _db.UserHistory.Where(c => c.UserId == userId).OrderByDescending(k => k.Time).Take(5);
+
                 bMIVM = new BMIVM() {
-                    Height = appUser.Height
+                    Height = appUser.Height,
+                    userHistories = history
                 };
             }
-
 
             return View(bMIVM);
         }
 
         public IActionResult BMIResult(double result) {
             return View(result);
+        }
+
+        public IActionResult ShowChart() {
+            return View();
         }
 
         [HttpPost]

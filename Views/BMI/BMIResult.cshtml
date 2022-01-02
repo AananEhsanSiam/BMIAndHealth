@@ -18,7 +18,10 @@
 		<p>Normal weight = 18.5–24.9</p>
 		<p>Overweight = 25–29.9</p>
 		<p>Obesity = BMI of 30 or greater</p>
-
+		@if (User.Identity.IsAuthenticated) {
+			<a class="btn btn-success mt-2" asp-controller="Result" asp-action="SaveBMIHistory" asp-route-id="@Model">Save Result</a>
+			<a class="btn btn-info mt-2" asp-action="ShowChart">Show Chart</a>
+		}
 	</div>
 	<div class="col-2"></div>
 </div>
